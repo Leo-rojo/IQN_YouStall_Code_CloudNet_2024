@@ -1,0 +1,14 @@
+# Description
+**Experiments**:
+- First, run *Selenium_chrome.py*. This script will automatically open a Chrome browser and start a YouTube video session as specified in the script. The script will not generate any results, it is used only to create a real setting.
+- Manually set the YouTube video quality to 720p.
+- Impose a bandwidth limit of 1 Mbps using the following command in a separate terminal:
+  ```bash
+  sudo /home/leonardo/Desktop/venv_310/bin/tcset wlo1 --rate 1000kbps --direction incoming
+- Set parameters i and k, nr of sequential toggles and iteration number, in *End-user_agent.py* then run it using the command `python End-user agent.py` in a new terminal. This will generate folders with the results of 
+the experiments in the structure Results/CPUi_k.npy and Results/Memoryi_k.npy, which contains the CPU percentage consumption and memory MB consumption collected every 5 seconds respect to the baseline.
+
+**Plotting**: 
+- Run *Plots* to generate the operational example, Figure 5. The data for the generation of the operational example are contained in Results folder.
+
+**Results**: The folder should be organized as Results/CPUi_k.npy and Results/Memoryi_k.npy where i and k are the parameters of the experiment. The results are stored in the form of numpy arrays.
