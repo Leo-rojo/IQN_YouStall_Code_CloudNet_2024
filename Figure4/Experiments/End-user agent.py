@@ -9,11 +9,8 @@ import threading
 import copy
 
 
-#switch_button = (1101,918) # work
-#switch_button = (1048,919) #tv marques
-switch_button = (1048,918) #tv marques
-#switch_button = (1099,918) #tv marques
-pyautogui.PAUSE = 0  # maximize the clicking speed
+switch_button = (1099,918) #Put the position of the 'autoplay' button on your monitor
+pyautogui.PAUSE = 0  #maximize the clicking speed
 def compare_images(image1, image2):
     """Compares two images and returns True if they are identical, False otherwise."""
     diff = ImageChops.difference(image1, image2)
@@ -51,39 +48,11 @@ def exclude_region_from_diff(diff, exclude_box):
         for x in range(x1, x2):
             for y in range(y1, y2):
                 pixels[x, y] = (0, 0, 0) if diff.mode == 'RGB' else 0
-def thumbnail_difference(bbox,threshold=300):
-    # Check if the difference forms the contour of a rectangle
-    x1, y1, x2, y2 = bbox
-    #width = x2 - x1
-    height = y2 - y1
-    is_thumbnail = height < threshold
-    return is_thumbnail
 def create_external_screenshot(screenshot, central_square_bbox):
     """Creates an external screenshot by filling the central square with black."""
     external_screenshot = Image.new('RGB', screenshot.size)
     external_screenshot.paste(screenshot, (0, 0))
     external_screenshot.paste((0, 0, 0), central_square_bbox)  # Fill the central square with black
-    return external_screenshot
-def create_external_screenshot_alternative(screenshot, central_square_bbox):
-    """Creates an external screenshot by filling the central square with black."""
-    # Convert the screenshot to a NumPy array for faster processing
-    screenshot_array = np.array(screenshot)
-
-    # Create an external screenshot array initialized with zeros
-    external_screenshot_array = np.zeros_like(screenshot_array)
-
-    # Fill the entire external screenshot array with the original screenshot
-    external_screenshot_array[:] = screenshot_array
-
-    # Get the coordinates of the central square
-    x1, y1, x2, y2 = central_square_bbox
-
-    # Fill the central square region with black
-    external_screenshot_array[y1:y2, x1:x2] = [0, 0, 0]
-
-    # Convert the NumPy array back to an image
-    external_screenshot = Image.fromarray(external_screenshot_array)
-
     return external_screenshot
 def take_screenshot(previous_screenshots,bbox,screen_bbox):
     screenshot = ImageGrab.grab(bbox=screen_bbox)
@@ -95,19 +64,8 @@ def take_screenshot(previous_screenshots,bbox,screen_bbox):
         #print('external_difference: '+str(thumbnail_box))
         internal_equal,_= compare_images(internal_screenshot, previous_screenshots[1])
         if (not internal_equal) and (external_equal):
-            return True, external_screenshot, internal_screenshot, ''
-        if not external_equal:
-            if thumbnail_difference(thumbnail_box): #if difference is a thumbnail: height difference less than 300
-                #print('thumbnail detected')
-                ### metti condizioni per dire se ancora stall o no
-                return True, external_screenshot, internal_screenshot, 'thumb'
-    return False, external_screenshot, internal_screenshot, ''
-def click_during_stall_real(frequency):
-    global detected_clicks
-    while not stop_thread_event.is_set():
-        time.sleep(0.021857500076293945)  # 4 clicks
-        detected_clicks.append(time.time())
-        time.sleep(frequency)
+            return True, external_screenshot, internal_screenshot
+    return False, external_screenshot, internal_screenshot
 def save_cliks_and_clear(folder_path,click_frequency):
     global detected_clicks
     with open(folder_path + 'Detected_clicks_'+str(click_frequency)+'.txt', 'a') as f_clicks:
@@ -123,21 +81,12 @@ def save_stalls_and_clear(folder_path,click_frequency):
     save_stalls_time.clear()
 
 
-
-
 if __name__ == "__main__":
     interval_screenshot = 0.2
     Network_id = '1000Kbps'
-    Video_link = 'https://www.youtube.com/watch?v=znN1GoKbPf4'#'https://www.youtube.com/watch?v=7uBpwcn2ZZ0'#'https://www.youtube.com/watch?v=bqkz4VikhlU'#'https://www.youtube.com/watch?v=XJVXN7xi02k'#'https://www.youtube.com/watch?v=qiGtEIoHlBc'#'https://www.youtube.com/watch?v=lU3c_4KGnvE'#'https://www.youtube.com/watch?v=mzdfGCdNSHQ'#'https://www.youtube.com/watch?v=1JQfg3GiZ1c'#'https://www.youtube.com/watch?v=mzdfGCdNSHQ'#'https://www.youtube.com/watch?v=0E_vk0c6yGA'#'https://www.youtube.com/watch?v=mzdfGCdNSHQ'#'https://www.youtube.com/watch?v=cL710l090u0'#'https://www.youtube.com/watch?v=mzdfGCdNSHQ'#'https://www.youtube.com/watch?v=lnhq0Zz6IMM'#'https://www.youtube.com/watch?v=cL710l090u0'#'https://www.youtube.com/watch?v=mzdfGCdNSHQ'#https://www.youtube.com/watch?v=cL710l090u0'#https://www.youtube.com/watch?v=Ufe-nmkZwXI'#'https://www.youtube.com/watch?v=1JQfg3GiZ1c'#'https://www.youtube.com/watch?v=mzdfGCdNSHQ'#'https://www.youtube.com/watch?v=-hK3py6FlDU'#https://www.youtube.com/watch?v=bZ3O-8pQLd0'
+    Video_link = 'https://www.youtube.com/watch?v=znN1GoKbPf4'
     length_individual_exp = 3000
-    #DETECTION_TIME_WINDOW = tw = 0.250  # Time window to detect the pattern (in seconds)
-    click_frequency = interval_screenshot# = 0.500
-    #interval_screenshot = 0.1
-    print("Parameter received by script 2:", Network_id)
-    print('Video link received by script 2:', Video_link)
-    print("Length received by script 2:", length_individual_exp)
-    print("Interval_screenshot received by script 2:", interval_screenshot)
-    print("Click frequency received by script 2:", click_frequency)
+    click_frequency = interval_screenshot
     video_id = Video_link.split('=')[-1]
 
     save_stalls = []
@@ -150,7 +99,7 @@ if __name__ == "__main__":
     thread = None
     interval = interval_screenshot
     duration = length_individual_exp
-    folder_path = 'Results_endtoend/' + video_id + '_' + Network_id + '/' + 'p_' + str(click_frequency)+'/'# + ' w_' + str(tw) + '/'
+    folder_path = 'Results/' + video_id + '_' + Network_id + '/'
 
     # Create all directories in the folder path
     os.makedirs(folder_path, exist_ok=True)
@@ -160,8 +109,6 @@ if __name__ == "__main__":
     if os.path.exists(folder_path + 'Detected_clicks_'+str(click_frequency)+'.txt'):
         os.remove(folder_path + 'Detected_clicks_'+str(click_frequency)+'.txt')
 
-    ## Check if video element is present and get its size
-    #video_elem = driver.find_element(By.CLASS_NAME, "html5-main-video")
     width = 1280 #video_elem.size["width"]
     height = 720 # video_elem.size["height"]
     print(f"Assumed video size: {height} x {width}")
@@ -178,8 +125,8 @@ if __name__ == "__main__":
     print(bbox)
 
     ## Define the screen bounding box to capture the entire screen
-    space_top_selenium = 50 #20 #50 with selenium and chrome, 0 without selenium 20firefox
-    screen_bbox = (100, 170+space_top_selenium, width+100, 853)#height+160)
+    space_top_selenium = 50 #I'm removing portion of screen that can interfere with the comparison, like commands/search bar
+    screen_bbox = (100, 170+space_top_selenium, width+100, 853)
 
     start_time = time.time()
     next_capture_time = start_time + interval
@@ -195,7 +142,7 @@ if __name__ == "__main__":
             index += 1
             start_screenshot=time.time()
             # stall detected can be True, False, 'control'
-            stall_detected, external_screenshot, internal_screenshot, thumb = take_screenshot(previous_screenshots,bbox,screen_bbox)
+            stall_detected, external_screenshot, internal_screenshot = take_screenshot(previous_screenshots,bbox,screen_bbox)
             if stall_detected:
                 print('stall detected')
                 pyautogui.click(switch_button)
@@ -207,39 +154,17 @@ if __name__ == "__main__":
                 print('stall not detected')
                 detected_clicks.append('N-' + str(time.time()))
 
-            #save the screenshots
-            # external_screenshot.save(folder_path + 'external_screenshot_' + str(index) + '.png')
-            # internal_screenshot.save(folder_path + 'internal_screenshot_' + str(index) + '.png')
             now=time.time()
-            #print('!!stall detected: '+str(stall_detected)+' previous_stall_detected: '+str(previous_stall_detected)+ ' time diff: '+str(now-previous_time))
             previous_time = now
-            # Update the previous screenshots for the next iteration
             previous_screenshots[0] = external_screenshot
             previous_screenshots[1] = internal_screenshot
-            #logic for calculating the stalls
-            # if stall_detected and previous_stall_detected: # stall continues   TT
-            #     print('stall continues')
-            #     #time.sleep(0.021857500076293945)  # 4 clicks
-            #     detected_clicks.append('S-'+str(time.time()))
-            # elif stall_detected and not previous_stall_detected: # new stall    TF
-            #     print('new stall')
-            #     #time.sleep(0.021857500076293945)  # 4 clicks
-            #     detected_clicks.append('S-'+str(time.time()))
-            # elif not stall_detected and previous_stall_detected: # end of stall  FT
-            #     print('end of stall')
-            #     detected_clicks.append('N-'+str(time.time()))
-            # else: # no stall                                                    FF
-            #     print('no stall')
-            #     detected_clicks.append('N-' + str(time.time()))
-
-            #save every 10 index
+            #save every 10 index so to don't bottlneck the I/O
             if index%10==0:
                 save_cliks_and_clear(folder_path,click_frequency)
 
-            save_cliks_and_clear(folder_path,click_frequency)
-
             previous_stall_detected = copy.copy(stall_detected)
             next_capture_time += interval
+
             # Dynamically adjust sleep to maintain the interval
             time_to_next_capture = max(0, next_capture_time - time.time())
             time.sleep(time_to_next_capture)

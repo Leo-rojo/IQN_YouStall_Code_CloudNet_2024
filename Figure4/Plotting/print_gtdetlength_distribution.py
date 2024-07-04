@@ -1,5 +1,9 @@
+import os
+
 import numpy as np
 import matplotlib.pyplot as plt
+
+os.chdir('/home/leonardo/Desktop/In_Band_Quality_Notification_from_End_Users_to_ISPs/Figure4/Plotting')
 
 font_axes_titles = {'family': 'sans-serif', 'color': 'black', 'size': 60}
 font_title = {'family': 'sans-serif', 'color': 'black', 'size': 60}

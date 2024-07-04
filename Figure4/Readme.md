@@ -8,6 +8,7 @@
 - Run *End-user_agent.py* with the value of p=0.2 using the command `python End-user agent.py 0.2` in a new terminal. This will generate folders with the results of the experiments in the structure Results_kind/Videoid_1000Kbps/p_0.2/Detected_clicks_0.2.txt, which contains the timestamps of when the autoplay button has been clicked four times.
 - Finally, to complete the experiments, run Infer_other_p_values.py. This script will infer other p values from the detected clicks with p=0.2 and generate the results in folders with the structure Results_kind/Videoid_1000Kbps/p_interval/Detected_clicks_interval.txt.
 - Organize all the results in the Results folder with the following structure: Results/Results_kind/Videoid_1000Kbps/p_interval/Detected_clicks_interval.txt for every kind and every p value.
+- Run *Infer_other_p_values.py* in order to produce the results for the other p values > 0.2. This script will infer the other p values from the detected clicks with p=0.2 and generate the results in folders with the structure Results_kind/Videoid_1000Kbps/p_interval/Detected_clicks_interval.txt.
 
 **Plotting**: 
 - Run *Plot_ground-truth_stall_duration.py* to generate the distributions of stall lengths for different genres.

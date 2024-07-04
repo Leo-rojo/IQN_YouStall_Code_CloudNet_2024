@@ -1,4 +1,3 @@
-import os
 import matplotlib.pyplot as plt
 import numpy as np
 import math
@@ -16,12 +15,12 @@ font_title = {'family': 'sans-serif',
 font_general = {'family' : 'sans-serif',
                         #'weight' : 'bold',
                         'size'   : 30}
-os.chdir('/home/leonardo/Desktop/ISP_user_collaboration/Figure4')
+#os.chdir('/home/leonardo/Desktop/ISP_user_collaboration/Figure4')
 plt.rc('font', **font_general)
-music='/home/leonardo/Desktop/ISP_user_collaboration/Figure4/100_stalls_music_p02_detectorlight/Results_endtoend/cL710l090u0_1000Kbps/p_0.2 w_0.1/'
-news='/home/leonardo/Desktop/ISP_user_collaboration/Figure4/100_stalls_news_p02_detectorlight/Results_endtoend/mzdfGCdNSHQ_1000Kbps/p_0.2 w_0.1/'
-sport='/home/leonardo/Desktop/ISP_user_collaboration/Figure4/100_stalls_sport_p02_detectorlight/Results_endtoend/znN1GoKbPf4_1000Kbps/p_0.2 w_0.1/'
-#folder_path='/home/leonardo/Desktop/ISP_user_collaboration/Figure4/Results_endtoend/znN1GoKbPf4_1000Kbps/p_0.2 w_0.1/'
+music='../Results/100_stalls_music_p02_detectorlight/Results_endtoend/cL710l090u0_1000Kbps/p_0.2 w_0.1/'
+news='../Results/100_stalls_news_p02_detectorlight/Results_endtoend/mzdfGCdNSHQ_1000Kbps/p_0.2 w_0.1/'
+sport='../Results/100_stalls_sport_p02_detectorlight/Results_endtoend/znN1GoKbPf4_1000Kbps/p_0.2 w_0.1/'
+
 def ecdf(data):
     """Compute ECDF"""
     n = len(data)
