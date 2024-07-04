@@ -119,7 +119,7 @@ if __name__ == "__main__":
     length_individual_exp = 3000
     EC2_interface = 'enX0'
     video_id = Video_link.split('=')[-1]
-    folder_path = 'Results/' + video_id + '_' + Network_id + '/'
+    folder_path = 'Results/Results_news/' + video_id + '_' + Network_id + '/'
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
     patterns_timestamps=[]

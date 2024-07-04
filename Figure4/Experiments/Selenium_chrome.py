@@ -58,7 +58,7 @@ if __name__ == "__main__":
     print('close chat')
     pyautogui.click(1776, 248)
     video_id = Video_link.split('=')[-1]
-    folder_path = 'Results/' + video_id + '_' + Network_id + '/'
+    folder_path = 'Results/Results_news/' + video_id + '_' + Network_id + '/'
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
     #wait before setting the network

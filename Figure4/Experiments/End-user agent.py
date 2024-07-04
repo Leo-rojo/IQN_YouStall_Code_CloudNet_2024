@@ -1,8 +1,6 @@
 import os
 from PIL import ImageGrab, Image, ImageChops
 import time
-import numpy as np
-import sys
 from collections import deque
 import pyautogui
 import threading
@@ -99,7 +97,7 @@ if __name__ == "__main__":
     thread = None
     interval = interval_screenshot
     duration = length_individual_exp
-    folder_path = 'Results/' + video_id + '_' + Network_id + '/'
+    folder_path = 'Results/Results_news/' + video_id + '_' + Network_id + '/'
 
     # Create all directories in the folder path
     os.makedirs(folder_path, exist_ok=True)
