@@ -2,7 +2,6 @@ import os
 from PIL import ImageGrab, Image, ImageChops
 import time
 import numpy as np
-from collections import deque
 import pyautogui
 import threading
 import copy
@@ -75,13 +74,6 @@ def take_screenshot(previous_screenshots,bbox,screen_bbox):
         if (not internal_equal) and (external_equal):
             return True, external_screenshot, internal_screenshot
     return False, external_screenshot, internal_screenshot
-def save_cliks_and_clear(folder_path,click_frequency):
-    global detected_clicks
-    with open(folder_path + 'Detected_clicks_'+str(click_frequency)+'.txt', 'a') as f_clicks:
-        if detected_clicks:
-            for click in detected_clicks:
-                f_clicks.write(str(click) + '\n')
-            detected_clicks.clear()
 
 
 
@@ -166,10 +158,6 @@ if __name__ == "__main__":
             # Update the previous screenshots for the next iteration
             previous_screenshots[0] = external_screenshot
             previous_screenshots[1] = internal_screenshot
-
-            #save every 10 index
-            if index%10==0:
-                save_cliks_and_clear(folder_path,click_frequency)
 
             previous_stall_detected = copy.copy(stall_detected)
             next_capture_time += interval
