@@ -73,7 +73,7 @@ def save_cliks_and_clear(folder_path,click_frequency):
             detected_clicks.clear()
 def save_stalls_and_clear(folder_path,click_frequency):
     global save_stalls_time
-    with open(folder_path + 'Detected_stalls_'+str(click_frequency)+'.txt', 'a') as f_stalls:
+    with open(folder_path + '/Detected_stalls_'+str(click_frequency)+'.txt', 'a') as f_stalls:
         for stall in save_stalls_time:
             f_stalls.write(str(stall) + '\n')
     save_stalls_time.clear()
