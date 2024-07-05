@@ -1,6 +1,5 @@
 import os
 
-os.chdir('/your/path/In_Band_Quality_Notification_from_End_Users_to_ISPs/Figure2_and_Figure3/Experiments')
 categories = ['news', 'music', 'sport']
 base_path = '../Results/Results_'
 
