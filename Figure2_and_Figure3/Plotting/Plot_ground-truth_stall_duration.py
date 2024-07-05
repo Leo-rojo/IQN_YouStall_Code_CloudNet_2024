@@ -30,7 +30,7 @@ def read_stalls_from_lines(lines):
 x_alls = []
 y_alls = []
 real_stalls_length_all = []
-for main_results_directory in ['Results_news/', 'Results_sport/','Results_music/']:
+for main_results_directory in ['Results/Results_news/', 'Results/Results_sport/','Results/Results_music/']:
     print(main_results_directory)
     for folder in os.listdir(main_results_directory):
         folder_path = main_results_directory + folder + '/'
