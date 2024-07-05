@@ -4,10 +4,15 @@
 - Manually set the YouTube video quality to 720p.
 - Impose a bandwidth limit of 1 Mbps using the following command in a separate terminal:
   ```bash
-  sudo /path/to/your/tcconfig/installation/tcset wlo1 --rate 1000kbps --direction incoming
-- Set parameters *i* and *k*, nr of sequential toggles and iteration number, in *End-user_agent.py* then run it using the command `python End-user agent.py` in a new terminal. This will generate folders with the results of 
+  sudo /path/to/your/tcconfig/installation/tcset your_interface --rate 1000kbps --direction incoming
+- Set parameters *i* and *k*, nr of sequential toggles and iteration number, in *End-user_agent.py* then run it using the command `python End-user_agent.py` in a new terminal. This will generate folders with the results of 
 the experiments in the structure 'Results/CPUi_k.npy' and 'Results/Memoryi_k.npy', which contains the CPU percentage consumption and memory MB consumption collected every 5 seconds respect to the baseline. 
 The baseline is the average CPU and memory consumption in the 5 seconds before the start of the End-user agent.
+
+To remove the bandwidth limitation, run the following command:
+  ```bash
+  sudo /path/to/your/tcconfig/installation/tcdel your_interface --all
+  ```
 
 **Plotting**: 
 - Run *Plots* to generate Figure 5 representing the End-user agent overhead in CPU and Memory terms.

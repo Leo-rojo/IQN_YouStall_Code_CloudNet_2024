@@ -60,7 +60,7 @@ def take_screenshot(previous_screenshots,bbox,screen_bbox):
     return False, external_screenshot, internal_screenshot
 def save_cliks_and_clear(folder_path,click_frequency):
     global detected_clicks
-    with open(folder_path + 'Detected_clicks_'+str(click_frequency)+'.txt', 'a') as f_clicks:
+    with open(folder_path + '/Detected_clicks_'+str(click_frequency)+'.txt', 'a') as f_clicks:
         if detected_clicks:
             for click in detected_clicks:
                 f_clicks.write(str(click) + '\n')
@@ -86,10 +86,8 @@ if __name__ == "__main__":
     folder_path = folder_path = 'Results_'+kind+'/' + video_id + '_' + Network_id #put the path where you want to save the results
     os.makedirs(folder_path, exist_ok=True)
 
-    if os.path.exists(folder_path + 'Detected_stalls_'+str(click_frequency)+'.txt'):
-        os.remove(folder_path + 'Detected_stalls_'+str(click_frequency)+'.txt')
-    if os.path.exists(folder_path + 'Detected_clicks_'+str(click_frequency)+'.txt'):
-        os.remove(folder_path + 'Detected_clicks_'+str(click_frequency)+'.txt')
+    if os.path.exists(folder_path + '/Detected_clicks_'+str(click_frequency)+'.txt'):
+        os.remove(folder_path + '/Detected_clicks_'+str(click_frequency)+'.txt')
 
     width = 1280 #video_elem.size["width"]
     height = 720 # video_elem.size["height"]

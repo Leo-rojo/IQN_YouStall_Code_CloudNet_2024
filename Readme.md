@@ -33,7 +33,7 @@ PyAutoGUI==0.9.54
 pyshark==0.6
 selenium==4.22.0
 ```
-In order to limit the bandwidth, we used `tcconfig`<sup>3</sup>, a is a tc command wrapper.
+In order to limit the bandwidth, we used `tcconfig`<sup>3</sup>, which is a tc command wrapper.
 
 <sup>1</sup>https://aws.amazon.com/es/ec2/
 
