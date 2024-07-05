@@ -10,7 +10,7 @@ switch_button = (1099,918) #Put the position of the 'autoplay' button on your mo
 pyautogui.PAUSE = 0  #maximize the clicking speed
 def start_browser():
     chrome_options = Options()
-    chrome_options.add_argument("--user-data-dir=/home/leonardo/Desktop/user_chrome") #To keep the user logged in, use your own path
+    chrome_options.add_argument("--user-data-dir=/your/path/user_chrome") #To keep the user logged in, use your own path
     chrome_options.add_argument("--disable-cache")
     chrome_options.add_argument("--auto-open-devtools-for-tabs")
     chrome_options.add_argument('--enable-quic')
@@ -28,13 +28,14 @@ def check_buffering(driver):
         print("Error:", e)
 
 if __name__ == "__main__":
+    Video_link = 'https://www.youtube.com/watch?v=XJVXN7xi02k'  # put the link of the video you want to test
+    kind = 'sport'  # put the kind of video you are testing: news, music, sport
     clicks = []
     conta_stalls = 0
     Network_id = '1000Kbps'
-    Video_link = 'https://www.youtube.com/watch?v=XJVXN7xi02k' #put the link of the video you want to test
-    nr_stall_limit = 30 #number of stalls to be detected before ending the experiment
+    nr_stall_limit = 100 #number of stalls to be detected before ending the experiment
     interface = 'wlo1' #put the name of your interface
-    subprocess.run(['sudo', '/home/leonardo/Desktop/venv_310/bin/tcdel', interface, '--all'], check=True) #clear all the traffic control rules
+    subprocess.run(['sudo', '/your/path/tcdel', interface, '--all'], check=True) #clear all the traffic control rules
     driver = start_browser()
     driver.set_window_position(0, 0) # Select the monitor to open Browser
     driver.maximize_window() # Maximize the window
@@ -46,7 +47,7 @@ if __name__ == "__main__":
     pyautogui.click(1776, 248)
 
     video_id = Video_link.split('=')[-1]
-    folder_path = 'Results_sport/' + video_id + '_' + Network_id #put the path where you want to save the results
+    folder_path = 'Results_'+kind+'/' + video_id + '_' + Network_id #put the path where you want to save the results
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
 

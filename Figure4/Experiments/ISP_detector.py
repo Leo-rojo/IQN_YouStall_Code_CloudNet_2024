@@ -10,19 +10,6 @@ PIECE_OF_CHUNKS = 1292 #max size of packet, lot of them belong to chunks
 DETECTION_TIME_WINDOW = tw = 0.300  # Time window to detect the pattern (in seconds)
 NR_OF_CLICKS = 4
 
-def save_patterns_and_clear(folder_path):
-    global patterns_timestamps
-    global ws
-    if patterns_timestamps:  # Check if the list is not empty
-        with open(folder_path + 'Detector_1.txt', "a") as f:
-            for timestamp in patterns_timestamps:
-                f.write(f"PF-{timestamp}\n")
-    if ws:
-        with open(folder_path + 'Detector_1_ws.txt', "a") as f:
-            for timestamp in ws:
-                f.write(f"PF-{timestamp}\n")
-        patterns_timestamps.clear()
-        ws.clear()
 def save_candidate_packets_time(folder_path):
     global timestamp_of_candidate
     if timestamp_of_candidate:  # Check if the list is not empty
@@ -90,11 +77,10 @@ def start_live_capture(interface, live_capture_duration, folder_path):
                             print("--Pattern array:",pattern_array)
                             ws.append(pattern_array[-1][1] - pattern_array[0][1])
                             reset_pattern_array()
-                            save_patterns_and_clear(folder_path)
                         else:
                             print("Pattern not detected, sliding window...")
 
-                #every two seconds call save_cum_time
+                #every two seconds call save
                 if time.time()-start_time_save_candidate>=2:
                     save_candidate_packets_time(folder_path)
                     start_time_save_candidate = time.time()
@@ -114,12 +100,13 @@ def start_live_capture(interface, live_capture_duration, folder_path):
 
 
 if __name__ == "__main__":
+    Video_link = 'https://www.youtube.com/watch?v=mzdfGCdNSHQ'  # put the link of the video you want to test
+    kind = 'news'  # put the kind of video you are testing: news, music, sport
     Network_id = '1000Kbps'
-    Video_link = 'https://www.youtube.com/watch?v=znN1GoKbPf4'
     length_individual_exp = 3000
     EC2_interface = 'enX0'
     video_id = Video_link.split('=')[-1]
-    folder_path = 'Results/Results_news/' + video_id + '_' + Network_id + '/'
+    folder_path = 'Results/Results_'+kind+'/' + video_id + '_' + Network_id + '/'
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
     patterns_timestamps=[]

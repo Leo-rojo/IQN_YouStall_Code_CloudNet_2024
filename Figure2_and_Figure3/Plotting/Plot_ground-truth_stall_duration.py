@@ -18,7 +18,7 @@ font_general = {'family' : 'sans-serif',
                         'size'   : 60}
 plt.rc('font', **font_general)
 
-os.chdir('/home/leonardo/Desktop/ISP_user_collaboration/Figure2_and_Figure3')
+os.chdir('/your/path/ISP_user_collaboration/Figure2_and_Figure3')
 def read_stalls_from_lines(lines):
     stalls = []
     for i in range(0, len(lines), 2):

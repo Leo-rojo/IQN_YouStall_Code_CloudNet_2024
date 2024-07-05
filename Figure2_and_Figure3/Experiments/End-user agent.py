@@ -69,8 +69,10 @@ def save_cliks_and_clear(folder_path,click_frequency):
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         interval_screenshot = float(sys.argv[1])
+    Video_link = 'https://www.youtube.com/watch?v=XJVXN7xi02k'  # put the link of the video you want to test
+    kind = 'sport'  # put the kind of video you are testing: news, music, sport
+
     Network_id = '1000Kbps'
-    Video_link = 'https://www.youtube.com/watch?v=XJVXN7xi02k'
     length_individual_exp = 2000 #This need to be longer than the time needed to collect the predefined amount of stall
     click_frequency = interval_screenshot
     video_id = Video_link.split('=')[-1]
@@ -81,7 +83,7 @@ if __name__ == "__main__":
     save_last_three_outcomes = deque(maxlen=3)
     interval = interval_screenshot
     duration = length_individual_exp
-    folder_path = folder_path = 'Results_sport/' + video_id + '_' + Network_id #put the path where you want to save the results
+    folder_path = folder_path = 'Results_'+kind+'/' + video_id + '_' + Network_id #put the path where you want to save the results
     os.makedirs(folder_path, exist_ok=True)
 
     if os.path.exists(folder_path + 'Detected_stalls_'+str(click_frequency)+'.txt'):

@@ -19,7 +19,7 @@ font_general = {'family' : 'sans-serif',
 plt.rc('font', **font_general)
 
 
-os.chdir('/home/leonardo/Desktop/ISP_user_collaboration/Figure2_and_Figure3')
+os.chdir('/your/path/ISP_user_collaboration/Figure2_and_Figure3')
 def read_stalls_from_lines(lines):
     stalls = []
     for i in range(0, len(lines), 2):
@@ -171,19 +171,6 @@ for main_results_directory in ['Results_news','Results_music','Results_sport']:#
         save_recall = []
         for i in [0.2,0.4,0.8,1.2,1.6,2.0]:
 
-            # # Define the tolerance
-            # if i ==0.1:
-            #     tolerance = 0.2
-            # elif i == 0.2:
-            #     tolerance = 0.3
-            # elif i == 0.5:
-            #     tolerance = 0.6
-            # elif i == 1.0:
-            #     tolerance = 1.1
-            # elif i == 2.0:
-            #     tolerance = 2.1
-
-
             folder_path_txts = folder_path +'p_'+str(i)+'/' #+'/Detected_stalls.'+str(i)+'txt'
             print(folder_path_txts)
 
@@ -192,19 +179,6 @@ for main_results_directory in ['Results_news','Results_music','Results_sport']:#
 
             parsed_clicks = parse_detected_clicks(detected_clicks)
             results = count_timestamps(parsed_clicks, real_stalls_parsed, 0.25, 0)
-
-            # print("True Positives (S in):", results["True Positives (S in)"])
-            # print("True Negatives (N out):", results["True Negatives (N out)"])
-            # print("False Positives (S out):", results["False Positives (S out)"])
-            # print("False Negatives (N in):", results["False Negatives (N in)"])
-
-            # Calculate accuracy, precision, recall, f1
-            # total = (results["True Positives (S in)"] + results["True Negatives (N out)"] + results[
-            #     "False Positives (S out)"] + results["False Negatives (N in)"])
-            # if total == 0:
-            #     accuracy = 0
-            # else:
-            #     accuracy = (results["True Positives (S in)"] + results["True Negatives (N out)"]) / total
 
             if (results["True Positives (S in)"] + results["False Positives (S out)"]) == 0:
                 precision = 0
@@ -250,7 +224,7 @@ font_general = {'family': 'sans-serif',
                 'size': 60}
 plt.rc('font', **font_general)
 
-os.chdir('/home/leonardo/Desktop/ISP_user_collaboration/Figure2_and_Figure3')
+os.chdir('/your/path/ISP_user_collaboration/Figure2_and_Figure3')
 
 # Load the precision data
 precision_news = np.load('precision_stalls_Results_news.npy', allow_pickle=True)

@@ -13,9 +13,11 @@ To plot and replicate the results of the paper, the folder is organized with sub
   - **Readme.md**: This file contains detailed instructions on how to run the experiments and plotting scripts, as well as how to structure the Results folder.
 
 ### General considerations
-All experiments require running different scripts simultaneously, saving results in real-time. To achieve this, we recommend opening a new terminal for each script to 
+- All experiments require running different scripts simultaneously, saving results in real-time. To achieve this, we recommend opening a new terminal for each script to 
 maintain better control over the experiments. More details on how to run the experiments are provided in the Readme.md file of each figure. The ISP agent script has been run on 
 a specific EC2 instance<sup>1</sup> where the local traffic is tunneled using OpenVPN<sup>2</sup>. However, with minor modifications, the script can be run locally to simulate the ISP.
+
+- The 'Results' folder, currently, contains the data used in the paper, allowing for replication of the figures.
 
 
 ### Requirements
