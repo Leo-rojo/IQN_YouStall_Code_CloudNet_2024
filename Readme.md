@@ -19,6 +19,7 @@ a specific EC2 instance<sup>1</sup> where the local traffic is tunneled using Op
 
 - The 'Results' folder, currently, contains the data used in the paper, allowing for replication of the figures.
 
+- The *get_mouse_position.py* script is useful for obtaining the mouse position on the screen; it prints the current position of the mouse every second.
 
 ### Requirements
 
