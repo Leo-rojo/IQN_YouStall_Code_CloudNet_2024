@@ -18,7 +18,6 @@ font_general = {'family' : 'sans-serif',
                         'size'   : 60}
 plt.rc('font', **font_general)
 
-os.chdir('/your/path/ISP_user_collaboration/Figure2_and_Figure3')
 def read_stalls_from_lines(lines):
     stalls = []
     for i in range(0, len(lines), 2):
@@ -30,7 +29,7 @@ def read_stalls_from_lines(lines):
 x_alls = []
 y_alls = []
 real_stalls_length_all = []
-for main_results_directory in ['Results/Results_news/', 'Results/Results_sport/','Results/Results_music/']:
+for main_results_directory in ['../Results/Results_news/', '../Results/Results_sport/','../Results/Results_music/']:
     print(main_results_directory)
     for folder in os.listdir(main_results_directory):
         folder_path = main_results_directory + folder + '/'

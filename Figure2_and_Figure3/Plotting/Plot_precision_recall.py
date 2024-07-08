@@ -18,8 +18,6 @@ font_general = {'family' : 'sans-serif',
                         'size'   : 60}
 plt.rc('font', **font_general)
 
-
-os.chdir('/your/path/ISP_user_collaboration/Figure2_and_Figure3')
 def read_stalls_from_lines(lines):
     stalls = []
     for i in range(0, len(lines), 2):
@@ -160,8 +158,8 @@ def count_timestamps(parsed_clicks, stalls, tolerance_out, tolerance_in):
 x_alls = []
 y_alls = []
 for main_results_directory in ['Results_news','Results_music','Results_sport']:#,'Results_music','Results_sport']:#'Results_news','Results_music','Results_sport']:#, 'Results_sport','Results_music']:
-    for folder in os.listdir('Results/'+main_results_directory+'/'):
-        folder_path = 'Results/'+main_results_directory+'/' + folder + '/'
+    for folder in os.listdir('../Results/'+main_results_directory+'/'):
+        folder_path = '../Results/'+main_results_directory+'/' + folder + '/'
         with open(folder_path + 'Real_stalls.txt', 'r') as f:
             real_stalls_lines = f.readlines()
         real_stalls_parsed = parse_stalls(real_stalls_lines)

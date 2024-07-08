@@ -28,7 +28,7 @@ def check_buffering(driver):
         print("Error:", e)
 
 if __name__ == "__main__":
-    Video_link = 'https://www.youtube.com/watch?v=XJVXN7xi02k'  # put the link of the video you want to test
+    Video_link = ''# put the link of the live youtube video you want to test, e.g. 'https://www.youtube.com/watch?v=NqRP08sCG_w'
     kind = 'sport'  # put the kind of video you are testing: news, music, sport
     clicks = []
     conta_stalls = 0

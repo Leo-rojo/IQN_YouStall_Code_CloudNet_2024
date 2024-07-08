@@ -30,7 +30,7 @@ if __name__ == "__main__":
     conta_stalls = 0
     click_frequency = 0.200
     Network_id = '1000Kbps'
-    Video_link = 'https://www.youtube.com/watch?v=znN1GoKbPf4' # put the link of the video you want to test
+    Video_link = ''# put the link of the live youtube video you want to test, e.g. 'https://www.youtube.com/watch?v=NqRP08sCG_w'
     nr_stall_limit = 10 # number of stalls to be detected before ending the experiment
     interface = 'wlo1'  # put the name of your interface
     subprocess.run(['sudo', '/your/path/tcdel', interface, '--all'], check=True)# clear all the traffic control rules

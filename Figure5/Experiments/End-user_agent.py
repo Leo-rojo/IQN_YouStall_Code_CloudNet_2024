@@ -18,8 +18,8 @@ def monitor_performance(interval,baseline,baseline_memory):
         absolute_memory_consumption_bytes = mem.total-mem.available
         memory.append(absolute_memory_consumption_bytes-baseline_memory)
         cpu_usage.append(cpu_usage_psutil-baseline)
-        np.save('Results/' + 'Memory' + str(i) + '_'+str(k) + '.npy', memory)
-        np.save('Results/' + 'CPU' + str(i) + '_'+str(k) + '.npy', cpu_usage)
+        np.save('../Results/' + 'Memory' + str(i) + '_'+str(k) + '.npy', memory)
+        np.save('../Results/' + 'CPU' + str(i) + '_'+str(k) + '.npy', cpu_usage)
 def compare_images(image1, image2):
     """Compares two images and returns True if they are identical, False otherwise."""
     diff = ImageChops.difference(image1, image2)
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     performance_thread.start()
     interval_screenshot = 0.2
     Network_id = '1000Kbps'
-    Video_link = 'https://www.youtube.com/watch?v=znN1GoKbPf4'
+    Video_link = ''# put the link of the live youtube video you want to test, e.g. 'https://www.youtube.com/watch?v=NqRP08sCG_w'
     length_individual_exp = 1000
     click_frequency = interval_screenshot
     video_id = Video_link.split('=')[-1]
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     thread = None
     interval = interval_screenshot
     duration = length_individual_exp
-    folder_path = 'Results/'
+    folder_path = '../Results/'
     # Create all directories in the folder path
     os.makedirs(folder_path, exist_ok=True)
 

@@ -80,7 +80,7 @@ def save_stalls_and_clear(folder_path,click_frequency):
 
 
 if __name__ == "__main__":
-    Video_link = ''# put the link of the live youtube video you want to test, e.g. 'https://www.youtube.com/watch?v=mzdfGCdNSHQ'
+    Video_link = ''# put the link of the live youtube video you want to test, e.g. 'https://www.youtube.com/watch?v=NqRP08sCG_w'
     kind = 'news'  # put the kind of video you are testing: news, music, sport
     interval_screenshot = 0.2
     Network_id = '1000Kbps'
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     thread = None
     interval = interval_screenshot
     duration = length_individual_exp
-    folder_path = 'Results/Results_'+kind+'/' + video_id + '_' + Network_id + '/'
+    folder_path = '../Results/Results_'+kind+'/' + video_id + '_' + Network_id + '/'
 
     # Create all directories in the folder path
     os.makedirs(folder_path, exist_ok=True)
