@@ -33,7 +33,7 @@ def start_live_capture(interface, live_capture_duration, folder_path):
         pattern_array = []
 
     def packet_callback(packet):
-        nonlocal pattern_array, streams, chunk_streams, start_time, chunk_stream, calculate_chunk_stream,start_time_save_candidate
+        nonlocal pattern_array, chunk_streams, start_time, chunk_stream, calculate_chunk_stream,start_time_save_candidate
         try:
             if packet.udp.srcport == '443':  #filter by packets that are sent from the server
                 size = int(packet.length)
@@ -100,11 +100,11 @@ def start_live_capture(interface, live_capture_duration, folder_path):
 
 
 if __name__ == "__main__":
-    Video_link = 'https://www.youtube.com/watch?v=mzdfGCdNSHQ'  # put the link of the video you want to test
+    Video_link = ''# put the link of the live youtube video you want to test, e.g. 'https://www.youtube.com/watch?v=mzdfGCdNSHQ'
     kind = 'news'  # put the kind of video you are testing: news, music, sport
     Network_id = '1000Kbps'
     length_individual_exp = 3000
-    EC2_interface = 'enX0'
+    EC2_interface = 'enX0' #put the name of your interface
     video_id = Video_link.split('=')[-1]
     folder_path = 'Results/Results_'+kind+'/' + video_id + '_' + Network_id + '/'
     if not os.path.exists(folder_path):

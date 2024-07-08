@@ -80,7 +80,7 @@ def save_stalls_and_clear(folder_path,click_frequency):
 
 
 if __name__ == "__main__":
-    Video_link = 'https://www.youtube.com/watch?v=mzdfGCdNSHQ'  # put the link of the video you want to test
+    Video_link = ''# put the link of the live youtube video you want to test, e.g. 'https://www.youtube.com/watch?v=mzdfGCdNSHQ'
     kind = 'news'  # put the kind of video you are testing: news, music, sport
     interval_screenshot = 0.2
     Network_id = '1000Kbps'

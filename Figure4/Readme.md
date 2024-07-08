@@ -6,7 +6,8 @@
   ```bash
   sudo /path/to/your/tcconfig/installation/tcset your_interface --rate 1000kbps --direction incoming
 - Run *End-user_agent.py* using the command `python End-user_agent.py` in a new terminal. This will generate folders with the results of the experiments in the structure Results_kind/Videoid_1000Kbps/Detected_clicks_0.2.txt, which contains the timestamps of when the autoplay button has been clicked four times. This can be useful for debugging purposes.
-- Run *ISP_detector.py* in the EC2 instance in order to capture the quic candidate packets. This will generate folders with the results of the experiments in the folder 'Results_kind/Videoid_1000Kbps/', it will generate timestamp_of_candidate.txt, which contains the timestamps of when the candidate packets has been sniffed.
+- Run *ISP_detector.py* in the EC2 instance in order to capture the quic candidate packets. This will generate folders with the results of the experiments in the folder 'Results_kind/Videoid_1000Kbps/', it will generate timestamp_of_candidate.txt, which contains the timestamps of when the candidate packets has been sniffed. 
+The script can be run locally in a new terminal to emulate an ISP. Be sure to change the network interface accordingly.
 
 This procedure should be repeated for each type of video: *music*, *news*, and *sports*. To do this, you need to change the parameters (variables) 'kind' and 'Video_link' in the scripts.
 Once the results for each type of video are obtained:

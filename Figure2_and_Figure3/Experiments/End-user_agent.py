@@ -125,6 +125,10 @@ if __name__ == "__main__":
             stall_detected, external_screenshot, internal_screenshot = take_screenshot(previous_screenshots,bbox,screen_bbox)
             if stall_detected:
                 print('stall detected')
+                pyautogui.click(switch_button)
+                pyautogui.click(switch_button)
+                pyautogui.click(switch_button)
+                pyautogui.click(switch_button)
                 detected_clicks.append('S-' + str(time.time()))
             else:
                 print('stall not detected')
