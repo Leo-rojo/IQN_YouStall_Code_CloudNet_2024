@@ -1,10 +1,11 @@
 ## Generate Figure 04
 
 ### LA
-* input files: The data are numpy arrays containing end-user agent overhead for CPU consumption and memory.
-The arrays are identified by their name of the kind: kind_of_overhead*n*_*r* with *n* and *r* two parameters that identify
-nr of sequential toggles of the autoplay switch of the interface and the iteration number of the experiment. e.g CPU2_3 means that
-the array contains the third experiment that consider two toggles in a row.
+* input files: The data consists of NumPy arrays that record the end-user agent's overhead in terms of CPU consumption and memory usage. The arrays are named using the following 
+convention: kind_of_overhead*n*_*r*, where *n* and *r* represent two parameters:
+  - *n* refers to the number of sequential toggles of the autoplay switch on the interface.
+  - *r* indicates the iteration number of the experiment.
+For example, CPU2_3 refers to the array that contains data from the third experiment involving two consecutive toggles of the autoplay switch.
 * Run generate_figure_4.py to generate Figure 4
 
 ### LB

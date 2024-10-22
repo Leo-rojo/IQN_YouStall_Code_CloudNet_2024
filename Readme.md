@@ -7,15 +7,15 @@ To reproduce the results, please follow the instructions provided in the readme.
 
 ### Structure
 We support the reproducibility on two levels characterized by different resource requirements and time commitments. Level A (LA) recreates all figures, mostly by running
-our Python code. The reproduction performs limited calculations based on data in final representations, e.g., stalls length experienced by a live streaming experience. Level B (LB) carries out in-depth replication 
+our Python code. The reproduction performs limited calculations based on data in final representations, such as the length of stalls experienced during a live streaming session. Level B (LB) carries out in-depth replication 
 through new indipendent experiments that generates new data. While LA is
 primarily for validating the results of this paper, LB targets the long-term impact of the artifacts
 through their reuse in future research.
 
 ### Artifact checklist
-- Programs: (LA) Python 3.10 with supporting libraries; (LB) PIL, pyautogui, threading, pyshark, selenium, psutil
+- Programs: (LA) Python 3.10 with supporting libraries; (LB) Pillow, pyautogui, threading, pyshark, selenium, psutil
 - Hardware: no particular requirements.
-- Output: (LA) all figures of the paper; (LB) new data derived from new indipendent experiments.
+- Output: (LA) all figures of the paper; (LB) new data obtained from independent experiments.
 - Approximate disk space requirement: (LA) 5.8 MB; (LB) depends on the length of experiments and value of parameter p.
 - Approximate experiment completion time: (LA) minutes; (LB) depends on the length of experiments.
 - Availability: public on GitHub.
@@ -35,9 +35,10 @@ Experiment-specific data in each subfolder.
 
 ### Installation
 The LA reproducibility involves installation of Python 3.10 with libraries as described in the
-requirements.txt file. For the in-depth LB replication, the additional installations include Chrome browser<sup>1</sup> and
-other Python libraries like Pillow<sup>2</sup> for the end-user agent, pyautogui<sup>3</sup> for interacting with Youtube's interface, pyshark<sup>4</sup> for detecting and analyzing packet from 
-the point of view of ISPs, selenium<sup>5</sup> for automatizing browser activities and psutil<sup>6</sup> for measuring overhead performances.
+requirements.txt file. For the in-depth LB replication, the additional installations include the Chrome browser<sup>1</sup> and various 
+Python libraries such as Pillow<sup>2</sup> for the end-user agent, pyautogui<sup>3</sup> for interacting with YouTube's interface, 
+pyshark<sup>4</sup> for packet detection and analysis from the ISP perspective, selenium<sup>5</sup> for automating browser activities, 
+and psutil<sup>6</sup> for monitoring performance overhead.
 
 ### Evaluation and expected results
 The repository allocates a separate self-contained folder for reproducing the results of each figure on the LA and/or LB levels, with readme.md files providing

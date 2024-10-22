@@ -3,14 +3,11 @@
 ### LA
 * input files: the data for the generation of the operational example are contained in 'Operational_example' folder. The data regarding real stalls and clicks detected with the timestamp for every experiments 
 are organized as '/Results_kind/Videoid_1000Kbps/Name.txt' for every kind and every txt file generated which contains:
-  - 'Real_stalls.txt' which describes the stalls experienced during an experiment by wrinting in different lines when
-  one stall start and end, repsectively identified by S or E followed by the timestamp. 
-  - 'timestamp_of_candidate.txt' that indicate the timestamps of when the ISPs dectector identifies a potential IQN packet
-  - 'Detected_clicks_0.2.txt' which contains timestamps of when end-user agent takes screenshots and an identifier for stall: N not stall and S is a stall.
+  - 'Real_stalls.txt': This file logs the stalls experienced during an experiment. Each stall is documented on separate lines, with the start and end of the stall marked by "S" (start) or "E" (end), followed by the corresponding timestamp.
+  - 'timestamp_of_candidate.txt': Contains the timestamps of when the ISP's detector identifies a potential IQN packet.
+  - 'Detected_clicks_0.2.txt': Records timestamps when the end-user agent takes screenshots, along with an identifier for each stall event: "N" for no stall and "S" for a stall.
 * Run generate_figure_2a.py to generate Figure 2a
-* Run generate_figure_2b_2c.py to generate Figure 2b and 2c and to 
-print aggragated and specific statistics for every gendre and plot additional figures that show cumulative candidate
-packets and the detection of stalls over time.
+* Run generate_figure_2b_2c.py to generate Figure 2b and 2c. This script will also print aggregated and specific statistics for each genre and plot additional figures, including cumulative candidate packets and stall detection over time.
 
 ### LB
 * input files: None
@@ -33,6 +30,6 @@ packets and the detection of stalls over time.
     ```bash
     sudo /path/to/your/tcconfig/installation/tcdel your_interface --all
     ```
-  - All the results folder should be put into output_data folder
+  - All the results folder should be placed into output_data folder
   - Run generate_figure_2a.py to generate Figure 2a 
   - Run generate_figure_2b_2c.py to generate Figure 2b and 2c and to 

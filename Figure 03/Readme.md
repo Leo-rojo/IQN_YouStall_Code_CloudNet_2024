@@ -1,11 +1,10 @@
 ## Generate Figure 03
 
 ### LA
-* input files: The data contains timestamps of when end-user agent takes screenshots and 
-an identifier for stall: N not stall and S is a stall. Those data are grouped in different subfolders called
-'p_value' depending on the value of parameter *p*. The valued spanned by our experiments are 0.2-0.4-0.8-1.6-2.0 for the three genres.
-Additionally inside each folder there is file 'Real_stalls.txt' containing the length of the stalls codified as S-timestamp E-timestamp for 
-the starting and ending timestamp, respectively.
+* input files: The data includes timestamps of when the end-user agent takes screenshots, along with an identifier for stalls: "N" for no stall and "S" for a stall. 
+These data are organized into subfolders named p_value, which correspond to different values of the parameter *p*. The values used in the experiments are 0.2, 0.4, 0.8, 1.6, and 2.0, 
+covering three genres. Additionally, each folder contains a file called Real_stalls.txt, which logs the duration of stalls, formatted as "S-timestamp E-timestamp" to 
+represent the start and end timestamps, respectively.
 * Run generate_figure_3.py to generate Figure 3
 * Run generate_legend.py to generate legend of Figure 3
 * Run Plot_ground-truth_stall_duration.py to generate ground truth stalls ecdf for the three genders.
@@ -36,5 +35,5 @@ the starting and ending timestamp, respectively.
     ```
   - Run generate_figure_3.py to generate Figure 3
   - Run generate_legend.py to generate legend of Figure 3
-  - Run Plot_ground-truth_stall_duration.py to generate ground truth stalls ecdf for the three genders.
+  - Run Plot_ground-truth_stall_duration.py to generate the empirical cumulative distribution function (ECDF) of the ground truth stall durations for the three genres.
 
