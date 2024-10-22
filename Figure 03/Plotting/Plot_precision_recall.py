@@ -2,20 +2,23 @@ import os
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+import matplotlib as mpl
+mpl.rc('hatch', color='k', linewidth=3)
 
 font_axes_titles = {'family': 'sans-serif',
                         'color':  'black',
                         #'weight': 'bold',
-                        'size': 60,
+                        'size': 70,
                         }
 font_title = {'family': 'sans-serif',
                         'color':  'black',
                         #'weight': 'bold',
-                        'size': 60,
+                        'size': 70,
                         }
 font_general = {'family' : 'sans-serif',
                         #'weight' : 'bold',
-                        'size'   : 60}
+                        'size'   : 70}
 plt.rc('font', **font_general)
 
 def read_stalls_from_lines(lines):
@@ -207,21 +210,6 @@ for main_results_directory in ['Results_news','Results_music','Results_sport']:#
         np.save('precision_stalls_'+main_results_directory+'.npy', save_precision)
         np.save('recall_stalls_'+main_results_directory+'.npy', save_recall)
 
-font_axes_titles = {'family': 'sans-serif',
-                    'color': 'black',
-                    # 'weight': 'bold',
-                    'size': 60,
-                    }
-font_title = {'family': 'sans-serif',
-              'color': 'black',
-              # 'weight': 'bold',
-              'size': 60,
-              }
-font_general = {'family': 'sans-serif',
-                # 'weight' : 'bold',
-                'size': 60}
-plt.rc('font', **font_general)
-
 # Load the precision data
 precision_news = np.load('precision_stalls_Results_news.npy', allow_pickle=True)
 precision_sport = np.load('precision_stalls_Results_sport.npy', allow_pickle=True)
@@ -238,10 +226,20 @@ fig, ax = plt.subplots(figsize=(20, 10), dpi=100)
 bar_width = 0.2
 index = np.arange(n_groups)
 
-# Plot bars for each category
-bar1 = ax.bar(index, precision_news, bar_width, label='News', color='r')
-bar2 = ax.bar(index + 2 * bar_width, precision_sport, bar_width, label='Sport', color='b')
-bar3 = ax.bar(index + bar_width, precision_music, bar_width, label='Music', color='g')
+def lighten_color(color, amount=0.5):
+    """Lightens the given color by mixing it with white. 'amount' ranges from 0 (no change) to 1 (white)."""
+    c = mcolors.to_rgba(color)
+    return [(1.0 - amount) * c[i] + amount for i in range(3)] + [1]  # Keep alpha as 1
+
+# Define lighter versions of the colors by mixing them with white
+light_red = lighten_color('red', 0.5)  # Lighter red
+light_blue = lighten_color('blue', 0.5)  # Lighter blue
+light_green = lighten_color('green', 0.5)  # Lighter green
+
+# Plot bars for each category with lighter colors and hatches
+bar1 = ax.bar(index, precision_news, bar_width, label='News', color=light_red, hatch='//', alpha=1)  # Lighter red with diagonal lines
+bar2 = ax.bar(index + 2 * bar_width, precision_sport, bar_width, label='Sport', color=light_blue, hatch='\\', alpha=1)  # Lighter blue with opposite diagonal lines
+bar3 = ax.bar(index + bar_width, precision_music, bar_width, label='Music', color=light_green, hatch='.', alpha=1)  # Lighter green with star pattern
 
 # Add labels, title, and legend
 ax.set_xlabel('Sampling period $\\it{p}$, ms')
@@ -281,10 +279,10 @@ fig, ax = plt.subplots(figsize=(20, 10), dpi=100)
 bar_width = 0.2
 index = np.arange(n_groups)
 
-# Plot bars for each category
-bar1 = ax.bar(index, precision_news, bar_width, label='News', color='r')
-bar2 = ax.bar(index + 2 * bar_width, precision_sport, bar_width, label='Sport', color='b')
-bar3 = ax.bar(index + bar_width, precision_music, bar_width, label='Music', color='g')
+# Plot bars for each category with hatches and no transparency
+bar1 = ax.bar(index, precision_news, bar_width, label='News', color=light_red, hatch='//', alpha=1)  # Diagonal lines pattern, no transparency
+bar2 = ax.bar(index + 2 * bar_width, precision_sport, bar_width, label='Sport', color=light_blue, hatch='\\', alpha=1)  # Opposite diagonal lines, no transparency
+bar3 = ax.bar(index + bar_width, precision_music, bar_width, label='Music', color=light_green, hatch='.', alpha=1)  # Star pattern, no transparency
 
 # Add labels, title, and legend
 ax.set_xlabel('Sampling period $\\it{p}$, ms')

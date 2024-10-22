@@ -1,5 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+import matplotlib as mpl
+mpl.rc('hatch', color='k', linewidth=3)
 
 font_axes_titles = {'family': 'sans-serif',
                         'color':  'black',
@@ -15,6 +18,15 @@ font_general = {'family' : 'sans-serif',
                         #'weight' : 'bold',
                         'size'   : 70}
 plt.rc('font', **font_general)
+def lighten_color(color, amount=0.5):
+    """Lightens the given color by mixing it with white. 'amount' ranges from 0 (no change) to 1 (white)."""
+    c = mcolors.to_rgba(color)
+    return [(1.0 - amount) * c[i] + amount for i in range(3)] + [1]  # Keep alpha as 1
+
+# Define lighter versions of the colors by mixing them with white
+light_red = lighten_color('red', 0.5)  # Lighter red
+light_blue = lighten_color('blue', 0.5)  # Lighter blue
+light_green = lighten_color('green', 0.5)  # Lighter green
 
 # Load CPU data
 cpu2 = np.mean(np.load('../Results/CPU2.npy', allow_pickle=True))
@@ -121,7 +133,11 @@ mem6_st = np.std([mem6, mem6_2, mem6_3, mem6_4])
 fig_cpu = plt.figure(figsize=(20, 10), dpi=100)
 cpu_values = [cpu2, cpu3, cpu4, cpu5, cpu6]
 cpu_errors = [cpu2_st, cpu3_st, cpu4_st, cpu5_st, cpu6_st]
-plt.bar(['2', '3', '4', '5', '6'], cpu_values, color='r', label='CPU Usage, %',width=0.6, yerr=cpu_errors,)
+bars = plt.bar(['2', '3', '4', '5', '6'], cpu_values, color=light_green, label='CPU Usage, %',width=0.6, yerr=cpu_errors, alpha=1)
+# Add different hatches for each bar
+hatches = ['//', '\\', '|', '-', '.']  # List of hatches for each bar
+for bar, hatch in zip(bars, hatches):
+    bar.set_hatch(hatch)
 plt.ylabel('CPU, %', fontdict=font_axes_titles)
 plt.xlabel('$\\it{n}$, number of toggles')
 plt.gcf().subplots_adjust(bottom=0.2)  # add space down
@@ -140,7 +156,11 @@ plt.close(fig_cpu)
 fig_mem = plt.figure(figsize=(20, 10), dpi=100)
 mem_values = [mem2, mem3, mem4, mem5, mem6]
 mem_errors = [mem2_st, mem3_st, mem4_st, mem5_st, mem6_st]
-plt.bar(['2', '3', '4', '5', '6'], mem_values, color='r', label='Memory Usage (MB)',width=0.6, yerr=mem_errors,)
+bars = plt.bar(['2', '3', '4', '5', '6'], mem_values, color=light_blue, label='Memory Usage (MB)',width=0.6, yerr=mem_errors,alpha=1)
+# Add different hatches for each bar
+hatches = ['//', '\\', '|', '-', '.']  # List of hatches for each bar
+for bar, hatch in zip(bars, hatches):
+    bar.set_hatch(hatch)
 plt.ylabel('Memory, MB', fontdict=font_axes_titles)
 plt.gcf().subplots_adjust(bottom=0.2)  # add space down
 plt.gcf().subplots_adjust(left=0.15)  # add space left
