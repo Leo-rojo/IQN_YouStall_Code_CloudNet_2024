@@ -18,8 +18,8 @@ def monitor_performance(interval,baseline,baseline_memory):
         absolute_memory_consumption_bytes = mem.total-mem.available
         memory.append(absolute_memory_consumption_bytes-baseline_memory)
         cpu_usage.append(cpu_usage_psutil-baseline)
-        np.save('../Results/' + 'Memory' + str(i) + '_'+str(k) + '.npy', memory)
-        np.save('../Results/' + 'CPU' + str(i) + '_'+str(k) + '.npy', cpu_usage)
+        np.save('output_data/' + 'Memory' + str(i) + '_'+str(k) + '.npy', memory)
+        np.save('output_data/' + 'CPU' + str(i) + '_'+str(k) + '.npy', cpu_usage)
 def compare_images(image1, image2):
     """Compares two images and returns True if they are identical, False otherwise."""
     diff = ImageChops.difference(image1, image2)
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     thread = None
     interval = interval_screenshot
     duration = length_individual_exp
-    folder_path = '../Results/'
+    folder_path = 'output_data/'
     # Create all directories in the folder path
     os.makedirs(folder_path, exist_ok=True)
 
