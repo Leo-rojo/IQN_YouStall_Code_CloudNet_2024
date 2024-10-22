@@ -1,7 +1,7 @@
 import os
 
 categories = ['news', 'music', 'sport']
-base_path = '../Results/Results_'
+base_path = 'output_data/Results_'
 
 # Initialize the arrays with the specified patterns
 for category in categories:

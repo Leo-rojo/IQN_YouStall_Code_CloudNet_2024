@@ -47,7 +47,7 @@ if __name__ == "__main__":
     pyautogui.click(1776, 248)
 
     video_id = Video_link.split('=')[-1]
-    folder_path = 'Results_'+kind+'/' + video_id + '_' + Network_id+'/p_0.2' #put the path where you want to save the results
+    folder_path = 'output_data/Results_'+kind+'/' + video_id + '_' + Network_id+'/p_0.2' #put the path where you want to save the results
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
 

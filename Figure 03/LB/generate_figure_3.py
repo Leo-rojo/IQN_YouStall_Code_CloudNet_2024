@@ -161,8 +161,8 @@ def count_timestamps(parsed_clicks, stalls, tolerance_out, tolerance_in):
 x_alls = []
 y_alls = []
 for main_results_directory in ['Results_news','Results_music','Results_sport']:#,'Results_music','Results_sport']:#'Results_news','Results_music','Results_sport']:#, 'Results_sport','Results_music']:
-    for folder in os.listdir('../Results/'+main_results_directory+'/'):
-        folder_path = '../Results/'+main_results_directory+'/' + folder + '/'
+    for folder in os.listdir('output_data/'+main_results_directory+'/'):
+        folder_path = 'output_data/'+main_results_directory+'/' + folder + '/'
         with open(folder_path + 'Real_stalls.txt', 'r') as f:
             real_stalls_lines = f.readlines()
         real_stalls_parsed = parse_stalls(real_stalls_lines)
@@ -207,13 +207,13 @@ for main_results_directory in ['Results_news','Results_music','Results_sport']:#
             save_precision.append(precision)
             save_recall.append(recall)
 
-        np.save('precision_stalls_'+main_results_directory+'.npy', save_precision)
-        np.save('recall_stalls_'+main_results_directory+'.npy', save_recall)
+        np.save('output_data/precision_stalls_'+main_results_directory+'.npy', save_precision)
+        np.save('output_data/recall_stalls_'+main_results_directory+'.npy', save_recall)
 
 # Load the precision data
-precision_news = np.load('precision_stalls_Results_news.npy', allow_pickle=True)
-precision_sport = np.load('precision_stalls_Results_sport.npy', allow_pickle=True)
-precision_music = np.load('precision_stalls_Results_music.npy', allow_pickle=True)
+precision_news = np.load('output_data/precision_stalls_Results_news.npy', allow_pickle=True)
+precision_sport = np.load('output_data/precision_stalls_Results_sport.npy', allow_pickle=True)
+precision_music = np.load('output_data/precision_stalls_Results_music.npy', allow_pickle=True)
 
 # Define the number of groups and bars per group
 n_groups = len(precision_news)  # Assuming all arrays have the same length
@@ -264,9 +264,9 @@ plt.close(fig)
 
 ###############################recall
 # Load the precision data
-precision_news = np.load('recall_stalls_Results_news.npy', allow_pickle=True)
-precision_sport = np.load('recall_stalls_Results_sport.npy', allow_pickle=True)
-precision_music = np.load('recall_stalls_Results_music.npy', allow_pickle=True)
+precision_news = np.load('output_data/recall_stalls_Results_news.npy', allow_pickle=True)
+precision_sport = np.load('output_data/recall_stalls_Results_sport.npy', allow_pickle=True)
+precision_music = np.load('output_data/recall_stalls_Results_music.npy', allow_pickle=True)
 
 # Define the number of groups and bars per group
 n_groups = len(precision_news)  # Assuming all arrays have the same length

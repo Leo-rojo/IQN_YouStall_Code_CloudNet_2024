@@ -83,7 +83,7 @@ if __name__ == "__main__":
     save_last_three_outcomes = deque(maxlen=3)
     interval = interval_screenshot
     duration = length_individual_exp
-    folder_path = folder_path = 'Results_'+kind+'/' + video_id + '_' + Network_id+'/p_0.2' #put the path where you want to save the results
+    folder_path = folder_path = 'output_data/Results_'+kind+'/' + video_id + '_' + Network_id+'/p_0.2' #put the path where you want to save the results
     os.makedirs(folder_path, exist_ok=True)
 
     if os.path.exists(folder_path + '/Detected_clicks_'+str(click_frequency)+'.txt'):

@@ -15,9 +15,9 @@ font_general = {'family' : 'sans-serif',
                         #'weight' : 'bold',
                         'size'   : 60}
 plt.rc('font', **font_general)
-music='input_data/Results_music/cL710l090u0_1000Kbps/'
-news='input_data/Results_news/mzdfGCdNSHQ_1000Kbps/'
-sport='input_data/Results_sport/znN1GoKbPf4_1000Kbps/'
+music='output_data/Results_music/cL710l090u0_1000Kbps/'
+news='output_data/Results_news/mzdfGCdNSHQ_1000Kbps/'
+sport='output_data/Results_sport/znN1GoKbPf4_1000Kbps/'
 def ecdf(data):
     """Compute ECDF"""
     n = len(data)

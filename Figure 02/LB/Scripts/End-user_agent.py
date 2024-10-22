@@ -98,7 +98,7 @@ if __name__ == "__main__":
     thread = None
     interval = interval_screenshot
     duration = length_individual_exp
-    folder_path = '../Results/Results_'+kind+'/' + video_id + '_' + Network_id + '/'
+    folder_path = 'output_data/Results_'+kind+'/' + video_id + '_' + Network_id + '/'
 
     # Create all directories in the folder path
     os.makedirs(folder_path, exist_ok=True)
