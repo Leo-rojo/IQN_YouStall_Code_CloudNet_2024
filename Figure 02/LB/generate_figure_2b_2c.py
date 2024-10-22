@@ -15,9 +15,9 @@ font_general = {'family' : 'sans-serif',
                         #'weight' : 'bold',
                         'size'   : 60}
 plt.rc('font', **font_general)
-music='../Results/Results_music/cL710l090u0_1000Kbps/'
-news='../Results/Results_news/mzdfGCdNSHQ_1000Kbps/'
-sport='../Results/Results_sport/znN1GoKbPf4_1000Kbps/'
+music='input_data/Results_music/cL710l090u0_1000Kbps/'
+news='input_data/Results_news/mzdfGCdNSHQ_1000Kbps/'
+sport='input_data/Results_sport/znN1GoKbPf4_1000Kbps/'
 def ecdf(data):
     """Compute ECDF"""
     n = len(data)
@@ -228,8 +228,8 @@ for nr,folder_path in enumerate([news, music,sport]):
     plt.ylabel('Cumulative Occurrence')
     plt.legend()
     plt.grid(True)
-    plt.savefig('cumulative_stalldet_'+kind+'.pdf',bbox_inches='tight')
-    plt.savefig('cumulative_stalldet_'+kind+'.png',bbox_inches='tight')
+    #plt.savefig('cumulative_stalldet_'+kind+'.pdf',bbox_inches='tight')
+    #plt.savefig('cumulative_stalldet_'+kind+'.png',bbox_inches='tight')
     plt.close(fig)
 
 
@@ -263,8 +263,8 @@ for nr,folder_path in enumerate([news, music,sport]):
 
     #REAL STALL LENGTHS / DETECTED STALL LENGTHS
     print('nr of ground turth stall/nr of detected stalls',len(real_stalls),'/',len(stall_stoe))
-    np.save('real_stalls_length'+str(kind)+'.npy',real_stalls_length)
-    np.save('stall_lengths'+str(kind)+'.npy',stall_lengths)
+    np.save('output_data/real_stalls_length'+str(kind)+'.npy',real_stalls_length)
+    np.save('output_data/stall_lengths'+str(kind)+'.npy',stall_lengths)
 
 
     ###################################################################################################################
@@ -296,26 +296,26 @@ for nr,folder_path in enumerate([news, music,sport]):
 
     real_lengths_filtered = [assoc['real_length'] for assoc in associations_after if assoc['real_start'] is not None and assoc['detected_start'] is not None]
     detected_lengths_filtered = [assoc['detected_length'] for assoc in associations_after if assoc['real_start'] is not None and assoc['detected_start'] is not None]
-    np.save('rl_' + str(kind), real_lengths_filtered)
-    np.save('dl_' + str(kind), detected_lengths_filtered)
+    np.save('output_data/rl_' + str(kind), real_lengths_filtered)
+    np.save('output_data/dl_' + str(kind), detected_lengths_filtered)
 
     # Calculate RMSE and MAE between detected and real stalls
     rmse_filtered = math.sqrt(sum((r - d) ** 2 for r, d in zip(real_lengths_filtered, detected_lengths_filtered)) / len(real_lengths_filtered))
     mae_filtered = sum(abs(r - d) for r, d in zip(real_lengths_filtered, detected_lengths_filtered)) / len(real_lengths_filtered)
     # measure difference real length detected length
     diff = [np.abs(real_lengths_filtered[i] - detected_lengths_filtered[i]) for i in range(len(real_lengths_filtered))]
-    np.save('stalls_detection_info' + str(kind) + '_filter.npy', diff)
+    np.save('output_data/stalls_detection_info' + str(kind) + '_filter.npy', diff)
     print('mae', mae_filtered)
     print('rmse', rmse_filtered)
 
 ####################################################################################################
 #Figure 4b
-real_stalls_length_news=np.load('real_stalls_lengthnews.npy',allow_pickle=True)*1000
-stall_lengths_news=np.load('stall_lengthsnews.npy',allow_pickle=True)*1000
-real_stalls_length_music=np.load('real_stalls_lengthmusic.npy',allow_pickle=True)*1000
-stall_lengths_music=np.load('stall_lengthsmusic.npy',allow_pickle=True)*1000
-real_stalls_length_sport=np.load('real_stalls_lengthsport.npy',allow_pickle=True)*1000
-stall_lengths_sport=np.load('stall_lengthssport.npy',allow_pickle=True)*1000
+real_stalls_length_news=np.load('output_data/real_stalls_lengthnews.npy',allow_pickle=True)*1000
+stall_lengths_news=np.load('output_data/stall_lengthsnews.npy',allow_pickle=True)*1000
+real_stalls_length_music=np.load('output_data/real_stalls_lengthmusic.npy',allow_pickle=True)*1000
+stall_lengths_music=np.load('output_data/stall_lengthsmusic.npy',allow_pickle=True)*1000
+real_stalls_length_sport=np.load('output_data/real_stalls_lengthsport.npy',allow_pickle=True)*1000
+stall_lengths_sport=np.load('output_data/stall_lengthssport.npy',allow_pickle=True)*1000
 x_all_rn, y_all_rn = ecdf(real_stalls_length_news)
 x_all_dn, y_all_dn = ecdf(stall_lengths_news)
 x_all_rm, y_all_rm = ecdf(real_stalls_length_music)
@@ -353,9 +353,9 @@ plt.close(fig)
 
 #############################################################################
 #Figure 4c
-associations_news=np.load('stalls_detection_infonews_filter.npy', allow_pickle=True)
-associations_music=np.load('stalls_detection_infomusic_filter.npy', allow_pickle=True)
-associations_sport=np.load('stalls_detection_infosport_filter.npy', allow_pickle=True)
+associations_news=np.load('output_data/stalls_detection_infonews_filter.npy', allow_pickle=True)
+associations_music=np.load('output_data/stalls_detection_infomusic_filter.npy', allow_pickle=True)
+associations_sport=np.load('output_data/stalls_detection_infosport_filter.npy', allow_pickle=True)
 error_lengths_news = [i*1000 for i in associations_news]
 error_lengths_music = [i*1000 for i in associations_music]
 error_lengths_sport = [i*1000 for i in associations_sport]
@@ -387,12 +387,12 @@ plt.close(fig)
 
 ################################################################
 #print aggregate mae and rmse
-rl_news=np.load('rl_news.npy',allow_pickle=True)
-dl_news=np.load('dl_news.npy',allow_pickle=True)
-rl_music=np.load('rl_music.npy',allow_pickle=True)
-dl_music=np.load('dl_music.npy',allow_pickle=True)
-rl_sport=np.load('rl_sport.npy',allow_pickle=True)
-dl_sport=np.load('dl_sport.npy',allow_pickle=True)
+rl_news=np.load('output_data/rl_news.npy',allow_pickle=True)
+dl_news=np.load('output_data/dl_news.npy',allow_pickle=True)
+rl_music=np.load('output_data/rl_music.npy',allow_pickle=True)
+dl_music=np.load('output_data/dl_music.npy',allow_pickle=True)
+rl_sport=np.load('output_data/rl_sport.npy',allow_pickle=True)
+dl_sport=np.load('output_data/dl_sport.npy',allow_pickle=True)
 #calculate mae and rmse of the concatenation of rl and dl
 real_lengths=np.concatenate((rl_news,rl_music,rl_sport))
 detected_lengths=np.concatenate((dl_news,dl_music,dl_sport))

@@ -25,7 +25,7 @@ def read_stalls_from_lines(lines):
         stalls.append((start_time, end_time))
     return stalls
 
-folder_path = '../Results/Operational_example/'
+folder_path = 'input_data/Operational_example/'
 with open(folder_path+'timestamp_of_candidate.txt', 'r') as f:
     time_candidate = f.readlines()
 time_candidate_clean = [float(time.strip()) for time in time_candidate]
