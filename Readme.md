@@ -1,4 +1,4 @@
-# Folder Structure
+# IQN and YouStall: Code and Experimental Configurations
 
 To plot and replicate the results of the paper, the folder is organized with subfolders named after each figure intended to be replicated. Each subfolder contains the following structure:
 
